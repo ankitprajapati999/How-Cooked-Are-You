@@ -1,0 +1,209 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg1: #0f1020;
+    --bg2: #1a0f2e;
+
+    --accent1: #ff4ecd;
+    --accent2: #6c63ff;
+    --accent3: #00f5d4;
+
+    --text: #ffffff;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    color: var(--text);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+
+}
+
+header {
+    display: flex;
+    background: linear-gradient(90deg, var(--accent1), var(--accent3));
+    color: black;
+    justify-content: center;
+    font-weight: 100;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    padding: 2rem 0 2rem 0;
+}
+header h1 {
+    animation: pulse 4s infinite ease-in-out;
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.2),
+    0 0 20px rgba(255,78,205,0.4);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+main {
+    flex: 1;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.getName {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.getName input {
+    width: 40vw;
+    height: 6vh;
+    max-width: 450px;
+    min-width: 250px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+
+    background: #1b1b2f;
+    color: white;
+
+    padding: 0 1rem;
+    font-size: 18px;
+}
+
+.getName input:focus {
+    outline: none;
+    border-color: var(--accent3);
+    box-shadow: 0 0 10px var(--accent3);
+}
+
+.getName label {
+    margin-left: 2px;
+}
+
+.FinalSubmit {
+    text-align: center;
+}
+
+.FinalSubmit button {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    color: white;
+    font-size: 16px;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.FinalSubmit button:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+.FinalSubmit button:active {
+    transform: scale(0.97);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    background-color: rgba(0,0,0,0.2);
+}
+
+footer a {
+    color: yellow;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Live Background Animation  */
+
+.background-blobs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.background-blobs span {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--accent1), transparent);
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: float 8s infinite ease-in-out;
+    opacity: 0.7;
+
+}
+
+.background-blobs span:nth-child(2) {
+    left: 60%;
+    background: radial-gradient(circle, var(--accent2), transparent);
+    animation-delay: 3s;
+}
+
+.background-blobs span:nth-child(3) {
+    top: 60%;
+    left: 20%;
+    background: radial-gradient(circle, var(--accent3), transparent);
+    animation-delay: 6s;
+}
+.background-blobs span:nth-child(4) {
+    top: 50%;
+    left: 70%;
+    background: radial-gradient(circle, var(--accent3), transparent);
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-120px) translateX(80px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+
+
+
+/* Media queries */
+
+@media (max-width: 900px) {
+
+    .getName input {
+        width: 70vw;
+    }
+
+    header {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 1.5rem 0;
+        font-size: 1rem;
+    }
+
+    .getName input {
+        width: 85vw;
+        height: 5vh;
+    }
+
+    .FinalSubmit button {
+        width: 60%;
+        margin: 1rem auto;
+    }
+
+}
