@@ -8,17 +8,17 @@ document.getElementById("ScoreValue").innerText = score;
 let level;
 
 if (score < 40) {
-    level = "Still Normal Human";
+    level = "Tum ek achhe insan ho";
 }
 else if (score < 80) {
-    level = "Slightly Cooked";
+    level = "Bas Chhod do ab sab kuchh";
 }
 else {
-    level = "Terminally Online Creature";
+    level = "Tum Zinda kese ho";
 }
 
 document.getElementById("cookLevel").innerText = level;
-document.getElementById("YourRank").innerText = "Nulla";
+
 
 document.getElementById("shareBtn").onclick = () => {
 
@@ -31,12 +31,44 @@ document.getElementById("shareBtn").onclick = () => {
 
 let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-console.log(typeof(leaderboard));
+const exists = leaderboard.some(
+    player => player.username === username && player.score === score
+);
 
-leaderboard.push({
-    username: username,
-    score: score,
-    rank:0
-});
+if (!exists) {
+    leaderboard.push({
+        username: username,
+        score: score,
+    });
+}
 
+leaderboard.sort((a,b) => b.score - a.score);
+leaderboard.slice(0, 10);
+
+const rank_set = (leaderboard, username, score) => {
+
+    const index = leaderboard.findIndex(
+        player => player.username === username && player.score === score
+    );
+
+    document.getElementById("YourRank").innerText = "#" + (index + 1);
+};
+
+rank_set(leaderboard, username, score);
+
+
+const BoardRender = (board) => {
+    const rank = document.getElementById("Ranks");
+
+    rank.innerHTML = "";
+
+    board.forEach((player, index) => {
+        rank.innerHTML += `
+            <span> #${index + 1}. ${player.username} </span>
+        `;
+    });
+    console.log(rank);
+};
+
+BoardRender(leaderboard);
 localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
